@@ -18,7 +18,7 @@
                 <tr th:if="${list !=null}" th:each="item : ${list}">
                     <td th:text="${item.name}"></td>
                     <td th:text="${item.age}"></td>
-                    <td th:text="${#dates.format(item.create_date, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(item.createDate, 'yyyy-MM-dd')}"></td>
                 </tr>
             </tbody>
         </table>

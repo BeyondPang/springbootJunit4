@@ -85,7 +85,7 @@ public class UserController extends BaseController{
      * @Description: 查询用户列表
      */
     @RequestMapping(value="/list")
-    public String view(HttpServletRequest request){
+    public String list(HttpServletRequest request){
         List<User> list = userService.findAll();
         request.setAttribute("list", list);
         logger.info("返回列表页面");

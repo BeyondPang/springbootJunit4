@@ -1,10 +1,11 @@
-package test.com.springboot.demo.controller;
+package test.com.springboot.demo.controller; 
 
 import com.springboot.demo.DemoApplication;
 import com.springboot.demo.service.UserService;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before; 
+import org.junit.After;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,15 +16,17 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-/**
- * @ClassName: ApplicationTests
- * @Auther: zhangyingqi
- * @Date: 2018/8/29 10:46
- * @Description:
- */
+/** 
+* UserController Tester. 
+* 
+* @author <Authors name> 
+* @since <pre>08/30/2018</pre> 
+* @version 1.0 
+*/
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
-public class ApplicationTests {
+public class UserControllerTest {
+
     /**
      * 模拟mvc测试对象
      */
@@ -36,7 +39,7 @@ public class ApplicationTests {
     private WebApplicationContext webApplicationContext;
 
     /**
-     * 商品业务数据接口
+     * 业务数据接口
      */
     @Autowired
     private UserService userService;
@@ -59,7 +62,7 @@ public class ApplicationTests {
         MvcResult mvcResult = mockMvc
                 .perform(// 1
                         MockMvcRequestBuilders.get("/user/list") // 2
-                                //.param("name","getList")        // 3
+                        //.param("name","getList")        // 3
                 )
                 .andReturn();// 4
 
@@ -67,16 +70,15 @@ public class ApplicationTests {
         String responseString = mvcResult.getResponse().getContentAsString(); // 6
 
         Assert.assertEquals("请求错误", 200, status); // 7
-        Assert.assertEquals("返回结果不一致", "/demoPage/listPage", responseString); // 8
+        //Assert.assertEquals("返回结果不一致", "/demoPage/listPage", responseString); // 8
     }
 
     @Test
     public void testJson() throws Exception {
         MvcResult mvcResult = mockMvc
                 .perform(// 1
-                        MockMvcRequestBuilders.post("/user/add") // 2
-                                .param("name","小王") // 3
-                                .param("age","26")
+                        MockMvcRequestBuilders.get("/user/delete") // 2
+                                .param("id","d8fad0822e9c4e46858312bb221af185") // 3
                 )
                 .andReturn();// 4
 
@@ -84,8 +86,8 @@ public class ApplicationTests {
         String responseString = mvcResult.getResponse().getContentAsString(); // 6
 
         Assert.assertEquals("请求错误", 200, status); // 7
-        Assert.assertEquals("返回结果不一致", "{\"status\":\"1\",\"data\":\"这是一条测试数据\",\"msg\":\"保存成功\"}", responseString); // 8
+        Assert.assertEquals("返回结果不一致", "{\"status\":\"1\",\"data\":null,\"msg\":\"删除成功\"}", responseString); // 8
     }
 
 
-}
+} 
